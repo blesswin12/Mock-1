@@ -6,6 +6,8 @@ gen/
 .cdsrc-private.json
 default-*.json
 *.sqlite
+*.db
+*.db-*
 
 # MTA
 mta_archives/
@@ -17,3 +19,6 @@ mta_archives/
 
 # @cap-js/cds-typer
 @cds-models
+
+TERMINAL_SHORTCUTS.md
+Mock-1/TERMINAL_SHORTCUTS.md

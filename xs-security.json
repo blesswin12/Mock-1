@@ -1,0 +1,19 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.ProcurementManager",
+      "description": "ProcurementManager"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "ProcurementManager",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.ProcurementManager"
+      ],
+      "attribute-references": []
+    }
+  ]
+}

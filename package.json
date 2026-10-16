@@ -4,16 +4,52 @@
   "description": "Welcome to your new CAP project.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cds-serve"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@sap/cds": "^10.1.0"
+    "@cap-js/hana": "^3",
+    "@sap/cds": "^10.1.0",
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
+    "@cap-js/sqlite": "^3.1.2",
     "@sap/cds-dk": "^10.1.0"
+  },
+ 
+  "cds": {
+    "requires": {
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "manager": {
+              "password": "manager123",
+              "roles": ["ProcurementManager"]
+            },
+            "employee": {
+              "password": "employee123",
+              "roles": []
+            }
+          }
+        }
+      },
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa"
+        },
+        "db": {
+          "kind": "hana",
+          "credentials": {}
+        }
+      },
+      "db": {
+        "kind": "sqlite"
+      }
+    }
   }
 }
