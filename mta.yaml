@@ -3,7 +3,7 @@ ID: mock-1
 version: 1.0.0
 description: "Welcome to your new CAP project."
 parameters:
-  enable-parallel-deployments: true
+  enable-parallel-deployments: false
 build-parameters:
   before-all:
     - builder: custom
@@ -11,11 +11,21 @@ build-parameters:
         - npm ci
         - npx cds build --production
 modules:
+  - name: mock-1-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 256M
+    requires:
+      - name: mock-1-db
+
   - name: mock-1-srv
     type: nodejs
     path: gen/srv
     parameters:
       instances: 1
+      memory: 512M
       buildpack: nodejs_buildpack
     build-parameters:
       builder: npm-ci
@@ -25,14 +35,6 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: mock-1-auth
-      - name: mock-1-db
-
-  - name: mock-1-db-deployer
-    type: hdb
-    path: gen/db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
       - name: mock-1-db
 
 resources:
